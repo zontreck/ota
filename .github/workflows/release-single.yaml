@@ -1,17 +1,6 @@
 name: Release single device
 
 on:
-  # Note that push/PR will not release, only build to see if there are obvious failures
-  push:
-    branches:
-      - '*'
-    paths:
-      - rooted-ota.sh
-  pull_request:
-    types: [synchronize, opened, reopened]
-    paths:
-      - rooted-ota.sh
-
   workflow_call:
     inputs:
       device-id:
@@ -33,10 +22,6 @@ on:
         description: skip building rootless OTA
         type: boolean
         required: false
-      skip-rooted:
-        description: skip building rooted OTA
-        type: boolean
-        required: false
       upload-test-ota:
         description: Upload OTA to test folder
         required: false
@@ -53,6 +38,9 @@ on:
         description: Skip release (build only)
         required: false
         type: boolean
+      rooted-graphene-version:
+        description: Git ref of rooted graphene repo to use
+        required: false
       ota-version:
         description: OTA version
         required: false
@@ -64,18 +52,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20 # Make sure to not waste hours when some command does not return 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout rooted-graphene script repository
+        uses: actions/checkout@v4
         with:
-          # Allow for switching to github-pages branch
-          fetch-depth: 0
+          repository: schnatterer/rooted-graphene
+          ref: ${{ github.event.inputs.rooted-graphene-version || inputs.rooted-graphene-version || 'main' }} 
+          fetch-depth: 1 # Efficent checkout, we only need the one ref
+      - name: Checkout OTA repository for updating OTA server on GitHub Pages
+        uses: actions/checkout@v4
+        with:
+          path: ota # Corresponds to PAGES_REPO_FOLDER
+          fetch-depth: 0 # Allow for switching to github-pages branch
       - name: Set inputs
         # Empty means, use version defined in rooted-ota.sh
         # Note the difference between github.event.inputs (workflow_dispatch) and inputs (workflow_call)
         run: |
           echo "DEVICE_ID=$(echo '${{ github.event.inputs.device-id || inputs.device-id || 'shiba' }}' | xargs)" >> $GITHUB_ENV
-          if [[ "${{ github.event.inputs.skip-rooted }}" != "true" ]]; then
-            echo "MAGISK_PREINIT_DEVICE=$(echo '${{ github.event.inputs.magisk-preinit-device || inputs.magisk-preinit-device || 'sda10' }}' | xargs)" >> $GITHUB_ENV
-          fi
+          echo "MAGISK_PREINIT_DEVICE=$(echo '${{ github.event.inputs.magisk-preinit-device || inputs.magisk-preinit-device || '' }}' | xargs)" >> $GITHUB_ENV
           
           echo "MAGISK_VERSION=$(echo '${{ github.event.inputs.magisk-version || '' }}' | xargs)" >> $GITHUB_ENV
           echo "OTA_VERSION=$(echo '${{ github.event.inputs.ota-version || '' }}' | xargs)" >> $GITHUB_ENV
@@ -100,6 +93,7 @@ jobs:
           KEY_OTA_BASE64: ${{ secrets.KEY_OTA_BASE64 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO: ${{ github.repository }}
+          PAGES_REPO_FOLDER: 'ota'
         run: |
           if [[ $SKIP_RELEASE == 'true' ]]; then
             DEBUG=1 bash -c '. rooted-ota.sh && createRootedOta && createOtaServerData'

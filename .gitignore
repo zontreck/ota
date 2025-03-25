@@ -1,7 +1,1 @@
 /.idea/
-/ota.key
-/ota.crt
-/avb.key
-/*.zip
-/*.zip.patched
-/.tmp/
