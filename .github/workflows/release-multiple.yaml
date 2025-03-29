@@ -28,6 +28,8 @@ jobs:
             magisk-preinit-device: sda10
           - device-id: bluejay # Pixel 6a
             magisk-preinit-device: sda8
+          - device-id: lynx # Pixel 7a
+            magisk-preinit-device: sda8
 #          - device-id: akita # Pixel 8a # https://github.com/Enovale/rooted-graphene/blob/4bb6f99cc0e1c22acd4bc71d6662ae3d9059849a/.github/workflows/release-multiple.yaml#L23 
 #            magisk-preinit-device: sda10
 #          - device-id: raven # Pixel 6 Pro
