@@ -16,6 +16,8 @@ jobs:
     strategy:
       matrix:
         include:
+          - device-id: komodo # Pixel 9 Pro XL
+            magisk-preinit-device: sda10
           - device-id: caiman # Pixel 9 Pro
             magisk-preinit-device: sda10
           - device-id: oriole # Pixel 6
