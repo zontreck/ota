@@ -44,9 +44,9 @@ on:
       ota-version:
         description: OTA version
         required: false
-      magisk-version:
-        description: Magisk version
-        required: false
+      additional-env:
+        description: Additional env var key value pairs, space separated, e.g. "A=1 B=2"
+        default: ''
 jobs:
   build-device:
     runs-on: ubuntu-latest
@@ -70,7 +70,6 @@ jobs:
           echo "DEVICE_ID=$(echo '${{ github.event.inputs.device-id || inputs.device-id || 'shiba' }}' | xargs)" >> $GITHUB_ENV
           echo "MAGISK_PREINIT_DEVICE=$(echo '${{ github.event.inputs.magisk-preinit-device || inputs.magisk-preinit-device || '' }}' | xargs)" >> $GITHUB_ENV
           
-          echo "MAGISK_VERSION=$(echo '${{ github.event.inputs.magisk-version || '' }}' | xargs)" >> $GITHUB_ENV
           echo "OTA_VERSION=$(echo '${{ github.event.inputs.ota-version || '' }}' | xargs)" >> $GITHUB_ENV
           echo "FORCE_OTA_SERVER_UPLOAD=$(echo '${{ github.event.inputs.force-ota-server-upload || '' }}' | xargs)" >> $GITHUB_ENV
           echo "FORCE_BUILD=$(echo '${{ github.event.inputs.force-build || '' }}' | xargs)" >> $GITHUB_ENV
@@ -83,6 +82,12 @@ jobs:
             echo "FORCE_BUILD=true" >> $GITHUB_ENV
             echo "SKIP_RELEASE=true" >> $GITHUB_ENV
           fi
+          
+          # Split additional-env and set each key-value pair as an environment variable
+          IFS=' ' read -r -a env_vars <<< '${{ github.event.inputs.additional-env || '' }}'
+          for key_value_pair in "${env_vars[@]}"; do
+            echo "$key_value_pair" >> $GITHUB_ENV
+          done
       - run: sudo apt-get install -y jq curl git
       - name: release
         env:
