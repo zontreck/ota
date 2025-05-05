@@ -1,7 +1,7 @@
 {
   "version": 2,
   "full": {
-    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025042500/lynx-2025042500-5938466-magisk-v28.1.zip",
-    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025042500/lynx-2025042500-5938466-magisk-v28.1.zip.csig"
+    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025050300/lynx-2025050300-0ceaec9-magisk-v28.1.zip",
+    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025050300/lynx-2025050300-0ceaec9-magisk-v28.1.zip.csig"
   }
 }
