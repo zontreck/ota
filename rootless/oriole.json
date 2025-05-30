@@ -1,7 +1,7 @@
 {
   "version": 2,
   "full": {
-    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025052000/oriole-2025052000-25cb0ae-rootless.zip",
-    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025052000/oriole-2025052000-25cb0ae-rootless.zip.csig"
+    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025052800/oriole-2025052800-54bc0f5-rootless.zip",
+    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025052800/oriole-2025052800-54bc0f5-rootless.zip.csig"
   }
 }
