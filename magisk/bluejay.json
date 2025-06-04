@@ -1,7 +1,7 @@
 {
   "version": 2,
   "full": {
-    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025052800/bluejay-2025052800-54bc0f5-magisk-v29.0.zip",
-    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025052800/bluejay-2025052800-54bc0f5-magisk-v29.0.zip.csig"
+    "location_ota": "https://github.com/rooted-graphene/ota/releases/download/2025060200/bluejay-2025060200-5b99244-magisk-v29.0.zip",
+    "location_csig": "https://github.com/rooted-graphene/ota/releases/download/2025060200/bluejay-2025060200-5b99244-magisk-v29.0.zip.csig"
   }
 }
