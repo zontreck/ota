@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "full": {
+    "location_ota": "https://github.com/zontreck/ota/releases/download/2025060200/akita-2025060200-abeea54-rootless.zip",
+    "location_csig": "https://github.com/zontreck/ota/releases/download/2025060200/akita-2025060200-abeea54-rootless.zip.csig"
+  }
+}
