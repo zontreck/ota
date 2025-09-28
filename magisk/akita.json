@@ -1,7 +1,7 @@
 {
   "version": 2,
   "full": {
-    "location_ota": "https://github.com/zontreck/ota/releases/download/2025091900/akita-2025091900-5c29798-magisk-v29.0.zip",
-    "location_csig": "https://github.com/zontreck/ota/releases/download/2025091900/akita-2025091900-5c29798-magisk-v29.0.zip.csig"
+    "location_ota": "https://github.com/zontreck/ota/releases/download/2025092501/akita-2025092501-32d15d3-magisk-v29.0.zip",
+    "location_csig": "https://github.com/zontreck/ota/releases/download/2025092501/akita-2025092501-32d15d3-magisk-v29.0.zip.csig"
   }
 }
