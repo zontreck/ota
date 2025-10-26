@@ -1,7 +1,7 @@
 {
   "version": 2,
   "full": {
-    "location_ota": "https://github.com/zontreck/ota/releases/download/2025100901/akita-2025100901-2cda36c-rootless.zip",
-    "location_csig": "https://github.com/zontreck/ota/releases/download/2025100901/akita-2025100901-2cda36c-rootless.zip.csig"
+    "location_ota": "https://github.com/zontreck/ota/releases/download/2025102301/akita-2025102301-dccad04-rootless.zip",
+    "location_csig": "https://github.com/zontreck/ota/releases/download/2025102301/akita-2025102301-dccad04-rootless.zip.csig"
   }
 }
